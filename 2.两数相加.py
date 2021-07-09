@@ -5,38 +5,56 @@
 
 def addTwo(l1, l2):
     if len(l1) >= len(l2):
-        l3 = [0 for i in range(len(l1))]
+        l3 = [0 for i in range(len(l1)+1)]
     else:
-        l3 = [0 for i in range(len(l2))]
+        l3 = [0 for i in range(len(l2)+1)]
 
     temp = 0
     if len(l2) <= len(l1):
         for j in range(0, len(l2)):
             if (l1[j] + l2[j]) >= 10:
                 l3[j] = (l1[j] + l2[j]) - 10 + temp
-                temp += 1
+                temp = 1
             else:
-                l3[j] = l1[j] + l2[j]
+                l3[j] = l1[j] + l2[j] + temp
+                temp = 0
         for j in range(len(l2), len(l1)):
-            l3[j] = l1[j]
+            if (l1[j] + temp) >= 10:
+                l3[j] = l1[j] + temp - 10
+                temp = 1
+            else:
+                l3[j] = l1[j] + temp
+                temp = 0
+        l3[len(l3)-1] = l3[len(l3)-1] + temp
+        if l3[len(l3)-1] == 0:
+            l3.pop()
         return l3
     else:
-        for i in range(0, len(l1)):
-            if (l1[i] + l2[i]) >= 10:
-                l3[i] = (l1[i] + l2[i]) - 10 + temp
-                temp += 1
+        for j in range(0, len(l1)):
+            if (l1[j] + l2[j]) >= 10:
+                l3[j] = (l1[j] + l2[j]) - 10 + temp
+                temp = 1
             else:
-                l3[i] = l1[i] + l2[i]
+                l3[j] = l1[j] + l2[j] + temp
+                temp = 0
         for j in range(len(l1), len(l2)):
-            l3[j] = l1[j]
+            if (l2[j] + temp) >= 10:
+                l3[j] = l2[j] + temp - 10
+                temp = 1
+            else:
+                l3[j] = l2[j] + temp
+                temp = 0
+        l3[len(l3) - 1] = l3[len(l3) - 1] + temp
+        if l3[len(l3) - 1] == 0:
+            l3.pop()
         return l3
 
 
 if __name__ == '__main__':
     list1 = [1, 2, 3, 4]
     list2 = [2, 3, 4]
-    list3 = [9, 9, 9, 1]
-    list4 = [8, 8, 8]
-    # result = addTwo(list1, list2)
+    list3 = [9, 9, 9, 9, 9, 9, 9]
+    list4 = [8, 8, 8, 8]
+    # result = addTwo(list2, list1)
     result = addTwo(list3, list4)
     print(result)
