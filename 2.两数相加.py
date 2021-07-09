@@ -55,6 +55,7 @@ if __name__ == '__main__':
     list2 = [2, 3, 4]
     list3 = [9, 9, 9, 9, 9, 9, 9]
     list4 = [8, 8, 8, 8]
-    # result = addTwo(list2, list1)
-    result = addTwo(list3, list4)
-    print(result)
+    result1 = addTwo(list2, list1)
+    result2 = addTwo(list3, list4)
+    print(result1)
+    print(result2)
